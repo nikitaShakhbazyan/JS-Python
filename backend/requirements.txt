@@ -1,0 +1,7 @@
+fastapi
+uvicorn[standard]
+python-dotenv
+sqlalchemy
+psycopg2-binary # DB postgreSQL 
+passlib[bcrypt] # pass hashing
+python-multipart # for FastAPI Forms/File uploads
