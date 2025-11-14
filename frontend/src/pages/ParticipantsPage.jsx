@@ -258,7 +258,12 @@ const ParticipantsPage = () => {
                                 </tr>
                             ) : (
                                 participants.map((participant) => (
-                                    <tr key={participant.participant_id} style={styles.tr}>
+                                    <tr
+                                        key={participant.participant_id}
+                                        style={styles.tr}
+                                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#f8f9fa'}
+                                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'white'}
+                                    >
                                         <td style={styles.td}>{participant.subject_id}</td>
                                         <td style={styles.td}>
                                             <span style={{
@@ -276,7 +281,8 @@ const ParticipantsPage = () => {
                                                 ...styles.badge,
                                                 backgroundColor:
                                                     participant.status === 'active' ? '#007bff' :
-                                                    participant.status === 'completed' ? '#28a745' : '#ffc107'
+                                                    participant.status === 'completed' ? '#28a745' : '#ffc107',
+                                                color: participant.status === 'withdrawn' ? '#000' : 'white'
                                             }}>
                                                 {participant.status}
                                             </span>
@@ -285,6 +291,8 @@ const ParticipantsPage = () => {
                                             <button
                                                 onClick={() => handleDelete(participant.participant_id)}
                                                 style={styles.deleteButton}
+                                                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#c82333'}
+                                                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#dc3545'}
                                                 title="Delete participant"
                                             >
                                                 Delete
@@ -303,63 +311,81 @@ const ParticipantsPage = () => {
 
 const styles = {
     container: {
-        padding: '20px',
-        maxWidth: '1200px',
-        margin: '20px auto'
+        padding: '0',
+        width: '100%',
+        minHeight: '100vh',
+        backgroundColor: '#f5f7fa'
     },
     header: {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: '30px',
-        paddingBottom: '15px',
-        borderBottom: '2px solid #eee'
+        marginBottom: '0',
+        paddingBottom: '20px',
+        borderBottom: '3px solid #4a90e2',
+        backgroundColor: 'white',
+        padding: '20px 40px',
+        borderRadius: '0',
+        boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
     },
     homeButton: {
-        padding: '8px 16px',
+        padding: '10px 20px',
         backgroundColor: '#6c757d',
         color: 'white',
         border: 'none',
-        borderRadius: '4px',
+        borderRadius: '6px',
         cursor: 'pointer',
         textDecoration: 'none',
         marginRight: '10px',
-        display: 'inline-block'
+        display: 'inline-block',
+        fontWeight: '500',
+        transition: 'all 0.3s ease',
+        boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
     },
     logoutButton: {
-        padding: '8px 16px',
+        padding: '10px 20px',
         backgroundColor: '#dc3545',
         color: 'white',
         border: 'none',
-        borderRadius: '4px',
-        cursor: 'pointer'
+        borderRadius: '6px',
+        cursor: 'pointer',
+        fontWeight: '500',
+        transition: 'all 0.3s ease',
+        boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
     },
     error: {
-        padding: '12px',
+        padding: '15px',
         backgroundColor: '#f8d7da',
         color: '#721c24',
         border: '1px solid #f5c6cb',
-        borderRadius: '4px',
-        marginBottom: '20px'
+        borderRadius: '8px',
+        margin: '20px 40px',
+        fontWeight: '500',
+        boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
     },
     actions: {
-        marginBottom: '20px'
+        marginBottom: '20px',
+        padding: '20px 40px 0'
     },
     addButton: {
-        padding: '10px 20px',
+        padding: '12px 24px',
         backgroundColor: '#28a745',
         color: 'white',
         border: 'none',
-        borderRadius: '4px',
+        borderRadius: '6px',
         cursor: 'pointer',
-        fontSize: '14px'
+        fontSize: '15px',
+        fontWeight: '600',
+        transition: 'all 0.3s ease',
+        boxShadow: '0 2px 6px rgba(40, 167, 69, 0.3)'
     },
     formContainer: {
-        backgroundColor: '#f8f9fa',
-        padding: '20px',
-        borderRadius: '8px',
-        marginBottom: '30px',
-        border: '1px solid #dee2e6'
+        backgroundColor: 'white',
+        padding: '25px',
+        borderRadius: '10px',
+        margin: '0 40px 30px',
+        border: '1px solid #e0e6ed',
+        boxShadow: '0 4px 6px rgba(0,0,0,0.07)'
     },
     form: {
         marginTop: '15px'
@@ -367,51 +393,64 @@ const styles = {
     formRow: {
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
-        gap: '15px',
-        marginBottom: '15px'
+        gap: '20px',
+        marginBottom: '18px'
     },
     formGroup: {
         display: 'flex',
         flexDirection: 'column'
     },
     input: {
-        padding: '8px',
-        border: '1px solid #ced4da',
-        borderRadius: '4px',
+        padding: '10px 12px',
+        border: '1px solid #d1d9e0',
+        borderRadius: '6px',
         fontSize: '14px',
-        marginTop: '5px'
+        marginTop: '5px',
+        transition: 'border-color 0.3s ease',
+        backgroundColor: 'white'
     },
     formActions: {
         display: 'flex',
-        gap: '10px',
-        marginTop: '20px'
+        gap: '12px',
+        marginTop: '24px'
     },
     submitButton: {
-        padding: '10px 20px',
+        padding: '12px 24px',
         backgroundColor: '#007bff',
         color: 'white',
         border: 'none',
-        borderRadius: '4px',
-        cursor: 'pointer'
+        borderRadius: '6px',
+        cursor: 'pointer',
+        fontWeight: '600',
+        transition: 'all 0.3s ease',
+        boxShadow: '0 2px 6px rgba(0, 123, 255, 0.3)'
     },
     cancelButton: {
-        padding: '10px 20px',
+        padding: '12px 24px',
         backgroundColor: '#6c757d',
         color: 'white',
         border: 'none',
-        borderRadius: '4px',
-        cursor: 'pointer'
+        borderRadius: '6px',
+        cursor: 'pointer',
+        fontWeight: '600',
+        transition: 'all 0.3s ease'
     },
     loading: {
         textAlign: 'center',
         padding: '40px',
         fontSize: '16px',
-        color: '#6c757d'
+        color: '#6c757d',
+        backgroundColor: 'white',
+        borderRadius: '8px',
+        margin: '0 40px',
+        boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
     },
     tableContainer: {
         overflowX: 'auto',
-        border: '1px solid #dee2e6',
-        borderRadius: '4px'
+        borderRadius: '10px',
+        margin: '0 40px 40px',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+        backgroundColor: 'white'
     },
     table: {
         width: '100%',
@@ -419,42 +458,55 @@ const styles = {
         backgroundColor: 'white'
     },
     th: {
-        padding: '12px',
+        padding: '16px 12px',
         textAlign: 'left',
-        backgroundColor: '#f8f9fa',
-        borderBottom: '2px solid #dee2e6',
+        backgroundColor: '#2c3e50',
+        color: '#ffffff',
+        borderBottom: '2px solid #34495e',
         fontWeight: '600',
-        fontSize: '14px'
+        fontSize: '14px',
+        textTransform: 'uppercase',
+        letterSpacing: '0.5px'
     },
     tr: {
-        borderBottom: '1px solid #dee2e6'
+        borderBottom: '1px solid #e9ecef',
+        transition: 'background-color 0.2s ease'
     },
     td: {
-        padding: '12px',
-        fontSize: '14px'
+        padding: '14px 12px',
+        fontSize: '14px',
+        color: '#2c3e50',
+        backgroundColor: 'white'
     },
     badge: {
-        padding: '4px 8px',
-        borderRadius: '4px',
+        padding: '5px 12px',
+        borderRadius: '12px',
         color: 'white',
         fontSize: '12px',
-        fontWeight: '500',
-        display: 'inline-block'
+        fontWeight: '600',
+        display: 'inline-block',
+        textTransform: 'capitalize',
+        boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
     },
     deleteButton: {
-        padding: '6px 12px',
+        padding: '8px 16px',
         backgroundColor: '#dc3545',
         color: 'white',
         border: 'none',
-        borderRadius: '4px',
+        borderRadius: '6px',
         cursor: 'pointer',
-        fontSize: '12px'
+        fontSize: '13px',
+        fontWeight: '600',
+        transition: 'all 0.3s ease',
+        boxShadow: '0 2px 4px rgba(220, 53, 69, 0.3)'
     },
     emptyMessage: {
         textAlign: 'center',
-        padding: '40px',
+        padding: '50px',
         color: '#6c757d',
-        fontStyle: 'italic'
+        fontStyle: 'italic',
+        fontSize: '15px',
+        backgroundColor: '#f8f9fa'
     }
 };
 

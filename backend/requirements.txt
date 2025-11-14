@@ -7,3 +7,8 @@ passlib # pass hashing
 bcrypt==4.0.1 # bcrypt backend
 python-multipart # for FastAPI Forms/File uploads
 python-jose[cryptography] # JWT token handling
+
+# Testing
+pytest
+pytest-cov
+httpx # Required for TestClient

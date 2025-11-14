@@ -52,7 +52,7 @@ def read_participants(
 
 @router.get("/{participant_id}", response_model=schemas.Participant)
 def read_participant(
-    participant_id: str, 
+    participant_id: str,
     db: Session = Depends(get_db),
     current_user: models.User = Depends(get_current_user)
 ):
@@ -63,7 +63,30 @@ def read_participant(
     
     if participant is None:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND, 
+            status_code=status.HTTP_404_NOT_FOUND,
             detail="Participant not found"
         )
     return participant
+
+
+@router.delete("/{participant_id}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_participant(
+    participant_id: str,
+    db: Session = Depends(get_db),
+    current_user: models.User = Depends(get_current_user)
+):
+    """Delete a participant by ID"""
+    participant = db.query(models.Participant).filter(
+        models.Participant.participant_id == participant_id
+    ).first()
+
+    if participant is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Participant not found"
+        )
+
+    db.delete(participant)
+    db.commit()
+
+    return None

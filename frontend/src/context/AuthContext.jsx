@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const API_BASE_URL = 'http://localhost:8000';
 
-const AuthContext = createContext(null);
+export const AuthContext = createContext(null);
 
 export const useAuth = () => {
     return useContext(AuthContext);
@@ -91,5 +91,3 @@ export const AuthProvider = ({ children }) => {
         </AuthContext.Provider>
     );
 };
-
-export { AuthContext };
