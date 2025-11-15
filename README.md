@@ -244,19 +244,6 @@ frontend/src/
 
 ---
 
-## 📊 Project Stats
-
-| Metric | Value |
-|--------|-------|
-| **Backend Tests** | 15+ tests |
-| **Test Coverage** | 80%+ |
-| **API Endpoints** | 7 (3 public, 4 protected) |
-| **Lines of Code** | ~2000 |
-| **Docker Images** | 2 (db, api) |
-| **CI/CD Pipelines** | 2 (CI, CD) |
-
----
-
 ## 📂 Project Structure
 
 ```
