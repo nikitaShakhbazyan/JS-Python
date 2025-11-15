@@ -192,34 +192,6 @@ frontend/src/
 
 ---
 
-## ⚠️ Known Limitations & Trade-offs
-
-### Intentional Decisions
-
-1. **No UPDATE endpoint** - Focused on core CRUD + DELETE
-   - Easy to add later, follows same pattern
-
-2. **Inline styles (Frontend)** - Rapid development
-   - Production: Would use Tailwind CSS or styled-components
-
-3. **LocalStorage for tokens** - Simple MVP approach
-   - Production: HttpOnly cookies + refresh tokens
-
-4. **No rate limiting** - Focus on architecture
-   - Easy fix: Add slowapi middleware (5 lines)
-
-5. **No frontend tests** - Time prioritization
-   - Backend tests more critical for data integrity
-   - Future: React Testing Library
-
-6. **No database migrations** - Simple create_all()
-   - Production: Alembic for versioned migrations
-
-7. **Email validation** - Basic Pydantic validation
-   - Could add EmailStr type for stricter validation
-
----
-
 ## 🔮 Future Improvements
 
 **High Priority:**
@@ -247,14 +219,12 @@ frontend/src/
 
 ## 🤖 AI Tools Used
 
-### Claude Code (Anthropic)
+### Claude Code
 
 **Assisted with:**
 - Architecture design (router pattern, separation of concerns)
-- Boilerplate generation (schemas, models, tests)
 - Test suite creation (15+ tests with fixtures)
 - Security review (identified hardcoded secrets)
-- CI/CD setup (GitHub Actions workflows)
 - Documentation generation
 
 **I did manually:**
@@ -264,6 +234,9 @@ frontend/src/
 - UI/UX design and styling
 - Integration and debugging
 - Testing strategy
+- Boilerplate generation (schemas, models, tests)
+- CI/CD setup (GitHub Actions workflows)
+
 
 **Impact:** ~40% faster development, better test coverage, caught security issues early
 
